@@ -10,15 +10,15 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s', level=loggi
 
 
 def define_cities_user_data(user_data):
-    virgin_city_list = []
-    with open('city.txt', encoding='utf-8') as file:
-        for city in file:
-            virgin_city_list.append(city.strip())
-    city_list = virgin_city_list.copy()
-    shuffle(city_list)
     if 'virgin_city_list' not in user_data:
+        virgin_city_list = []
+        with open('city.txt', encoding='utf-8') as file:
+            for city in file:
+                virgin_city_list.append(city.strip())
         user_data['virgin_city_list'] = virgin_city_list
     if 'city_list' not in user_data:
+        city_list = user_data['virgin_city_list'].copy()
+        shuffle(city_list)
         user_data['city_list'] = city_list
     if 'last_output_city' not in user_data:
         user_data['last_output_city'] = ''
